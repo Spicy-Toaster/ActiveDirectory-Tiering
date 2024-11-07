@@ -13,6 +13,10 @@ $LogonRights = @(
 )
 
 foreach ($CurrentGPO in $AllGPOs) {
+    if ($CurrentGPO.DisplayName -in @("Change", "Me", "To","The","Names","Of,"Your","Tiering","GPOs")) {
+        continue
+    }
+
     $CurrentReport = Get-GPOReport -Name $CurrentGPO.DisplayName -ReportType XML
 
     foreach ($Right in $LogonRights) {
